@@ -11,6 +11,16 @@ if __name__ == '__main__':
     read_data_path = Path.joinpath(DATA_FOLDER, 'despesas56.pkl')
     df = pd.read_pickle(read_data_path)
 
+    # * despesas tipo: SERVIÇOS POSTAIS, TELEFONIA \ nao geram documento   
+    # * valores entre parenteses no site https://www.camara.leg.br/cota-parlamentar/ se referem a valores 
+    # negativos
+    # * Documentos Compensatorios servem como deducoes negativas a fim de fechar o limite da cota 
+    # parlamentar
+    # * por algum motivo documentos compensatorio so sao gerados e contrapartida a passagens aereas
+    # * valorDocumento é o valor bruto da despesa
+    # * Glosa é o valor que nao foi restituido do valor bruto das despesas
+    # * valorLiquido é o valor restituido
+
     #%%
     mapped_remaining_info = df["ultimoStatus"].apply(lambda x: (x['siglaPartido'], 
                                                                 x['siglaUf'],

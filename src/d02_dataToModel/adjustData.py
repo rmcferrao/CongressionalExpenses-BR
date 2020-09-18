@@ -13,7 +13,7 @@ update_escolaridade =  {'pos-graduacao':  ['Doutorado Incompleto', 'Doutorado', 
                         'superior': ['Mestrado Incompleto', 'Superior'],
                         'ensino-medio': ['Ensino Técnico', 'Secundário', 'Ensino Médio', 'Superior Incompleto'],
                         'fundamental2': ['Ensino Médio Incompleto', 'Secundário Incompleto', 'Ensino Fundamental'],
-                        'fundamental1': ['Ensino Médio Incompleto'],
+                        'fundamental1': ['Ensino Médio Incompleto', 'Primário Completo'],
                         'sem-escolaridade': ['Primário Incompleto']}
 
 def content_to_key(estado_input, dictionary):
@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
     # change esclaridade to more a broad description
     df['escolaridade'] = df['escolaridade'].apply(content_to_key, dictionary=update_escolaridade)
-    features = ['partido', 'sexo', 'escolaridade', 'tipoDocumento', 'valor', 'tipo', 'mes', 'idade']
+    features = ['nome', 'partido', 'sexo', 'escolaridade', 'tipoDocumento', 'valor', 'tipo', 'mes', 'idade']
 
     df = df[features].reset_index(drop=True)
 
